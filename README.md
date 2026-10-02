@@ -1,5 +1,10 @@
 # BERTopic 토픽 지도
 
+> **이 튜토리얼은 [DH 튜토리얼](https://github.com/vadoro/dh_tutorials)로 옮겼습니다.** 앞으로의 수정은 새 저장소에서만 이루어지며, 이 저장소는 보관(읽기 전용)됩니다.
+>
+> - 사이트: https://vadoro.github.io/dh_tutorials/bertopic/
+> - 소스: https://github.com/vadoro/dh_tutorials/tree/main/bertopic
+
 BERTopic 토픽 모델링의 원리를 아주 쉽게 설명하는 **인터랙티브 모션그래픽 영상**입니다.
 짧은 한국어 문장 90개가 "숫자 → 지도 → 섬 → 이름표"로 바뀌는 과정을 3분 46초 동안 따라갑니다.
 
