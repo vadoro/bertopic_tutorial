@@ -42,16 +42,19 @@ button,select,input{font:inherit;color:inherit}
 .eyebrow{margin:0;font-size:12.5px;font-weight:600;letter-spacing:.12em;color:var(--accent);text-transform:uppercase}
 h1{margin:0;font-family:var(--disp);font-weight:800;font-size:clamp(27px,4.2vw,44px);line-height:1.18;letter-spacing:-.01em;text-wrap:balance}
 h1 em{font-style:normal;background:linear-gradient(transparent 62%,var(--accent-soft) 62%)}
+.jump{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.jump a{padding:4px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--text);font-size:13.5px;font-weight:600;text-decoration:none}
+.jump a:hover{border-color:var(--accent);color:var(--accent)}
 .lead{margin:0;max-width:62ch;color:var(--muted);font-size:16px}
 
 /* ---------- player (의도적으로 늘 어두운 화면) ---------- */
 .player{background:var(--screen);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 22px 50px -28px rgba(6,16,26,.6)}
 .screen{position:relative;width:100%;max-width:100%;aspect-ratio:16/9;background:#0A1520}
 #stage{position:absolute;inset:0;width:100%;height:100%;display:block}
-#tip{position:absolute;left:0;top:0;max-width:260px;padding:9px 11px;border-radius:9px;background:rgba(7,15,23,.94);border:1px solid var(--screen-line);color:var(--screen-text);font-size:13px;line-height:1.5;pointer-events:none;box-shadow:0 10px 24px rgba(0,0,0,.35)}
-#tip .tk{display:inline-block;margin:4px 4px 0 0;padding:0 6px;border-radius:5px;background:#1A3148;color:#BFD8EA;font-size:11.5px}
-#tip .tp{display:flex;align-items:center;gap:6px;margin-top:6px;font-size:12px;color:var(--screen-muted)}
-#tip .dot{width:9px;height:9px;border-radius:50%}
+#tip,.pgtip{position:absolute;left:0;top:0;max-width:260px;padding:9px 11px;border-radius:9px;background:rgba(7,15,23,.94);border:1px solid var(--screen-line);color:var(--screen-text);font-size:13px;line-height:1.5;pointer-events:none;box-shadow:0 10px 24px rgba(0,0,0,.35)}
+#tip .tk,.pgtip .tk{display:inline-block;margin:4px 4px 0 0;padding:0 6px;border-radius:5px;background:#1A3148;color:#BFD8EA;font-size:11.5px}
+#tip .tp,.pgtip .tp{display:flex;align-items:center;gap:6px;margin-top:6px;font-size:12px;color:var(--screen-muted)}
+#tip .dot,.pgtip .dot{width:9px;height:9px;border-radius:50%}
 #bigPlay{position:absolute;left:50%;top:77%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:10px;padding:14px 22px 14px 18px;border:1px solid rgba(124,196,242,.55);border-radius:999px;background:rgba(8,18,28,.82);color:var(--screen-text);font-weight:600;font-size:17px;cursor:pointer;backdrop-filter:blur(4px)}
 #bigPlay:hover{background:rgba(18,40,60,.92)}
 #bigPlay svg{width:22px;height:22px}
@@ -63,6 +66,8 @@ h1 em{font-style:normal;background:linear-gradient(transparent 62%,var(--accent-
 .ib:hover{background:rgba(124,196,242,.12)}
 .ib svg{width:20px;height:20px}
 .ib[aria-pressed="false"]{opacity:.5}
+.ib.tb{width:auto;gap:6px;padding:0 10px 0 8px;font-size:13px;font-weight:600;white-space:nowrap;display:inline-flex;align-items:center}
+.ttsnote{margin:0;padding:6px 14px 8px;background:var(--screen-2);color:var(--screen-muted);font-size:12.5px;border-top:1px solid var(--screen-line)}
 .time{font-family:var(--mono);font-size:12.5px;color:var(--screen-muted);font-variant-numeric:tabular-nums;white-space:nowrap}
 .scrub{position:relative;flex:1;min-width:60px;height:36px;display:flex;align-items:center}
 .ticks{position:absolute;left:8px;right:8px;top:50%;height:0;pointer-events:none}
@@ -132,6 +137,78 @@ pre.code .k{color:#7CC4F2} pre.code .s{color:#F5C343} pre.code .c{color:#7F95A8}
 .toplist code{font-family:var(--mono);font-size:12.5px}
 .chk{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px}
 .hint{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;color:var(--muted);margin-top:12px}
+/* ---------- 놀이터 · 퀴즈 · 용어집 ---------- */
+.block{display:flex;flex-direction:column;gap:14px;padding-top:26px;border-top:1px solid var(--line);scroll-margin-top:12px}
+.bhead{display:flex;flex-direction:column;gap:6px}
+.bhead h2{margin:0;font-family:var(--disp);font-weight:800;font-size:clamp(23px,3vw,31px);line-height:1.25;text-wrap:balance}
+.bhead p{margin:0;max-width:68ch;color:var(--muted)}
+.pg{display:flex;flex-direction:column;gap:14px}
+.pgmap{background:var(--screen);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.pgscreen{position:relative;width:100%;aspect-ratio:16/9;background:#0A1520}
+#pgCanvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:default}
+.pgmode{position:absolute;left:50%;top:12px;transform:translateX(-50%);margin:0;padding:6px 14px;border-radius:999px;background:rgba(245,195,67,.95);color:#1B1405;font-size:13px;font-weight:700;pointer-events:none;white-space:nowrap}
+.pgbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:9px 14px;background:var(--screen-2);color:var(--screen-text);font-size:13px}
+.pgbar b{font-family:var(--mono);font-size:15px;font-variant-numeric:tabular-nums;color:var(--screen-accent)}
+.pgbar .sp{flex:1}
+.pgbar .kb{color:var(--screen-muted)}
+.ctl{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px;align-items:start}
+.ctl fieldset{margin:0;padding:12px 14px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface);min-width:0}
+.ctl legend{padding:0 6px;font-size:12.5px;font-weight:600;letter-spacing:.06em;color:var(--muted)}
+.ctl .row{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin:6px 0}
+.ctl label{font-size:13.5px;font-weight:600}
+.ctl .mono{font-family:var(--mono);font-size:12.5px}
+.ctl input[type=range]{flex:1;min-width:120px;accent-color:var(--accent)}
+.ctl select,.ctl input[type=text]{height:36px;padding:0 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface-2);min-width:0;max-width:100%}
+.ctl input[type=text]{flex:1;min-width:0;width:100%}
+.ctl .note{margin:4px 0 0;font-size:12.5px;color:var(--muted)}
+.tokchips{display:flex;flex-wrap:wrap;gap:5px;min-height:32px;margin:8px 0}
+.tokchips .chipbtn{height:28px;font-size:12.5px}
+.tokchips .chipbtn[aria-pressed="false"]{opacity:.6;text-decoration:line-through}
+.pglow{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:16px;align-items:start}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;min-width:0}
+.card h3{margin:0 0 8px;font-size:15px;font-weight:700}
+.card h3 code{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--muted)}
+.tinfo td:nth-child(3),.tinfo th:nth-child(3),.tinfo td:nth-child(4),.tinfo th:nth-child(4){text-align:left}
+.tinfo td{white-space:normal}
+.tinfo th:first-child,.tinfo td:first-child{text-align:left}
+.tinfo th:nth-child(2),.tinfo td:nth-child(2){text-align:right}
+.tinfo tr.on td{background:var(--accent-soft)}
+.tinfo .pick{display:inline-flex;align-items:center;gap:6px;border:0;background:none;padding:0;font-family:var(--mono);font-weight:600;cursor:pointer;color:var(--text)}
+.tinfo .reps{font-size:12.5px;color:var(--muted)}
+.wbars{display:flex;flex-direction:column;gap:5px;font-size:13.5px}
+.wbars div{display:grid;grid-template-columns:5.5em minmax(0,1fr) 3.4em;align-items:center;gap:8px}
+.wbars i{display:block;height:12px;border-radius:4px}
+.wbars span:last-child{font-family:var(--mono);font-size:12.5px;text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+.quiz{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,400px),1fr));gap:12px;align-items:start}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;min-width:0}
+.q.ok{border-color:var(--good)}
+.q.no{border-color:#C2412D}
+.q .qt{margin:0 0 10px;font-weight:600}
+.q .qn{font-family:var(--mono);color:var(--accent);margin-right:8px}
+.qopts{display:grid;grid-template-columns:1fr;gap:6px}
+.qopts button{min-height:38px;padding:7px 12px;border:1px solid var(--line);border-radius:9px;background:var(--surface-2);text-align:left;cursor:pointer;line-height:1.45}
+.qopts button:hover:not(:disabled){border-color:var(--accent)}
+.qopts button:disabled{cursor:default}
+.qopts button.right{border-color:var(--good);color:var(--good);font-weight:600}
+.qopts button.wrong{border-color:#C2412D;color:#C2412D;text-decoration:line-through}
+.qcv{display:block;width:100%;height:auto;aspect-ratio:2/1;border-radius:9px;background:#0A1520;cursor:pointer;margin-bottom:8px}
+.qkeys{display:flex;flex-wrap:wrap;gap:6px}
+.qkeys button{min-width:44px;text-align:center}
+.qwhy{margin:10px 0 0;font-size:13.5px;color:var(--muted)}
+.q.ok .qwhy b{color:var(--good)}
+.q.no .qwhy b{color:#C2412D}
+.qfoot{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between}
+.qfoot p{margin:0;font-weight:600}
+.gloss{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:12px;align-items:start}
+.gloss section{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;min-width:0}
+.gloss h3{margin:0 0 4px;font-family:var(--disp);font-size:19px;font-weight:700;color:var(--accent)}
+.gloss dl{margin:0}
+.gloss dt{margin-top:10px;font-weight:700}
+.gloss dt span{margin-left:6px;font-family:var(--mono);font-size:12px;font-weight:400;color:var(--muted)}
+.gloss dd{margin:2px 0 0;color:var(--muted);font-size:14px}
+.gloss code{font-family:var(--mono);font-size:12.5px;background:var(--surface-2);border:1px solid var(--line);border-radius:5px;padding:0 4px;color:var(--text)}
+@media (max-width:900px){ .pglow{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:760px){ .ib.tb span{display:none} .ib.tb{width:36px;padding:0;justify-content:center} .pgbar .kb{display:none} }
 footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;display:flex;flex-direction:column;gap:4px}
 footer p{margin:0;max-width:80ch}
 
@@ -162,6 +239,7 @@ body.export .screen{width:1920px;height:1080px;aspect-ratio:auto}
     <p class="eyebrow">인터랙티브 모션그래픽 · 3분 46초</p>
     <h1>문서 더미가 <em>토픽 지도</em>가 되기까지</h1>
     <p class="lead">BERTopic은 글을 숫자로 바꾸고, 지도로 펼치고, 빽빽한 섬을 찾고, 섬마다 이름을 붙여요. 짧은 문장 90개로 그 과정을 한 장면씩 따라가 봅니다. 멈추고, 되감고, 직접 값을 바꿔 보세요.</p>
+    <nav class="jump" aria-label="페이지 안 이동"><a href="#player">영상</a><a href="#playground">놀이터</a><a href="#quiz">퀴즈</a><a href="#glossary">용어집</a></nav>
   </header>
 
   <section class="player" id="player" aria-label="BERTopic 설명 영상">
@@ -179,8 +257,10 @@ body.export .screen{width:1920px;height:1080px;aspect-ratio:auto}
         <option value="0.5">0.5×</option><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option>
       </select>
       <button class="ib" id="ccBtn" type="button" aria-pressed="true" aria-label="자막 켜기/끄기" title="자막 (C)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M10.5 10.3a2.2 2.2 0 1 0 0 3.4M17 10.3a2.2 2.2 0 1 0 0 3.4"/></svg></button>
+      <button class="ib tb" id="ttsBtn" type="button" aria-pressed="false" title="음성 해설: 브라우저 음성으로 자막 읽기 (V)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z" fill="currentColor" stroke-linejoin="round"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg><span>음성 해설</span></button>
       <button class="ib" id="fsBtn" type="button" aria-label="전체 화면" title="전체 화면 (F)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
     </div>
+    <p class="ttsnote" id="ttsNote" hidden></p>
   </section>
 
   <section class="below">
@@ -189,6 +269,136 @@ body.export .screen{width:1920px;height:1080px;aspect-ratio:auto}
       <h2 id="labTitle">직접 해 보기</h2>
       <div id="labBody"></div>
     </aside>
+  </section>
+
+  <section class="block" id="playground" aria-labelledby="pgTitle">
+    <div class="bhead">
+      <p class="eyebrow">놀이터</p>
+      <h2 id="pgTitle">내 손으로 만드는 토픽 지도</h2>
+      <p>영상 속 문서 90개가 지도 위에 있어요. 점을 끌어 옮기거나 새 문장을 지도에 놓으면 HDBSCAN과 c-TF-IDF가 그 자리에서 다시 계산돼요. 문장이 들어갈 자리를 정하는 건 원래 임베딩 모델의 일인데, 여기서는 여러분이 그 역할을 맡아요.</p>
+    </div>
+    <div class="pg">
+      <div class="pgmap">
+        <div class="pgscreen">
+          <canvas id="pgCanvas" tabindex="0" aria-label="문서 점이 놓인 토픽 지도. 아래 표에 같은 결과가 글로 나옵니다."></canvas>
+          <div class="pgtip" id="pgTip" hidden></div>
+          <p class="pgmode" id="pgMode" hidden>지도에서 이 문장이 들어갈 곳을 누르세요 (Esc: 취소)</p>
+        </div>
+        <div class="pgbar" id="pgStat" aria-live="polite"></div>
+      </div>
+      <div class="ctl">
+        <fieldset>
+          <legend>③ 군집화 · HDBSCAN</legend>
+          <div class="row"><label for="pgMcs">min_cluster_size</label><input id="pgMcs" type="range" min="2" max="20" value="10"><span class="val" id="pgMcsV">10</span></div>
+          <div class="row"><label for="pgMs">min_samples</label><input id="pgMs" type="range" min="1" max="20" value="10" disabled><span class="val" id="pgMsV">10</span></div>
+          <div class="row"><label class="chk"><input id="pgMsAuto" type="checkbox" checked> min_cluster_size와 같게 (기본값)</label></div>
+          <p class="note">min_samples를 키우면 더 보수적으로 묶어서 이상치가 늘어요.</p>
+        </fieldset>
+        <fieldset>
+          <legend>토픽 다듬기</legend>
+          <div class="row"><label for="pgNr">nr_topics</label><select id="pgNr"><option value="0">그대로 (None)</option><option value="2">2개로 합치기</option><option value="3">3개로 합치기</option><option value="4">4개로 합치기</option><option value="5">5개로 합치기</option><option value="6">6개로 합치기</option></select></div>
+          <div class="row"><label class="chk"><input id="pgRed" type="checkbox"> 이상치를 가까운 토픽에 넣기</label></div>
+          <p class="note"><code class="mono">reduce_outliers</code>를 흉내 냈어요. 지도에서 가장 가까운 토픽 중심으로 보냅니다.</p>
+        </fieldset>
+        <fieldset>
+          <legend>새 문장 놓기</legend>
+          <div class="row"><input id="pgText" type="text" placeholder="예: 손흥민이 두 골을 넣었다" autocomplete="off" aria-label="지도에 놓을 새 문장"></div>
+          <div class="tokchips" id="pgToks" aria-label="토크나이저가 뽑은 단어 (눌러서 빼거나 넣기)"></div>
+          <div class="row"><button class="btn" type="button" id="pgPlace">지도에 놓기</button><button class="btn ghost" type="button" id="pgReset">처음 상태로</button></div>
+          <div class="samples" id="pgSamples"></div>
+          <p class="note">위 칩은 토크나이저가 뽑은 단어예요. 잘못 뽑혔으면 눌러서 빼거나 넣으세요. 점은 끌어서 옮기고, 두 번 누르면 지도에서 빠져요.</p>
+        </fieldset>
+      </div>
+    </div>
+    <div class="pglow">
+      <div class="card">
+        <h3>토픽 목록 <code>topic_model.get_topic_info()</code></h3>
+        <div class="tblwrap" id="pgInfo"></div>
+      </div>
+      <div class="card">
+        <h3 id="pgWordsTitle">토픽 단어 점수 <code>get_topic(0)</code></h3>
+        <div class="wbars" id="pgWords"></div>
+        <h3 style="margin-top:14px">지금 설정을 파이썬으로</h3>
+        <div id="pgCode"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="quiz" aria-labelledby="quizTitle">
+    <div class="bhead">
+      <p class="eyebrow">퀴즈</p>
+      <h2 id="quizTitle">열 문제로 확인하기</h2>
+      <p>영상 순서대로 나와요. 답을 고르면 바로 해설이 보여요.</p>
+    </div>
+    <ol class="quiz" id="quizList"></ol>
+    <div class="qfoot"><p id="quizScore" role="status"></p><button class="btn ghost" type="button" id="quizReset">처음부터 다시 풀기</button></div>
+  </section>
+
+  <section class="block" id="glossary" aria-labelledby="glossTitle">
+    <div class="bhead">
+      <p class="eyebrow">용어집</p>
+      <h2 id="glossTitle">한 줄로 정리한 용어와 기본값</h2>
+      <p>용어 옆 회색 글씨는 영어 이름이나 BERTopic 기본값이에요. 코드에 그대로 쓰는 이름은 <code style="font-family:var(--mono)">고정폭 글꼴</code>로 적었어요.</p>
+    </div>
+    <div class="gloss">
+      <section>
+        <h3>기본</h3>
+        <dl>
+          <dt>토픽 모델링 <span>topic modeling</span></dt><dd>많은 문서를 읽지 않고도 어떤 주제(토픽)들이 있는지 자동으로 찾아내는 방법.</dd>
+          <dt>BERTopic</dt><dd>문장 임베딩 → 차원 축소 → 군집화 → c-TF-IDF의 네 단계로 토픽을 찾는 파이썬 라이브러리. 각 단계를 다른 모델로 바꿔 끼울 수 있어요.</dd>
+          <dt>토픽 <span>topic</span></dt><dd>뜻이 비슷한 문서들의 무리. 번호(0, 1, 2…)와 대표 단어로 된 이름이 붙어요. 0번이 가장 큰 토픽이에요.</dd>
+          <dt>이상치 <span>outlier · -1</span></dt><dd>어느 토픽에도 속하지 않는 문서. 억지로 끼워 넣지 않고 토픽 <code>-1</code>로 따로 모아 둬요.</dd>
+        </dl>
+      </section>
+      <section>
+        <h3>① 임베딩</h3>
+        <dl>
+          <dt>임베딩 <span>embedding</span></dt><dd>문장의 뜻을 숫자 목록(벡터)으로 바꾼 것. 뜻이 비슷하면 숫자도 비슷해요.</dd>
+          <dt>문장 임베딩 모델 <span>SBERT</span></dt><dd>문장을 통째로 읽고 벡터를 만드는 언어 모델. 기본값은 영어 <code>all-MiniLM-L6-v2</code>, 다국어는 <code>paraphrase-multilingual-MiniLM-L12-v2</code>(둘 다 384차원).</dd>
+          <dt>코사인 유사도 <span>cosine similarity</span></dt><dd>두 벡터가 가리키는 방향이 얼마나 같은지. 1에 가까울수록 뜻이 비슷해요.</dd>
+          <dt>차원 <span>dimension</span></dt><dd>벡터를 이루는 숫자의 개수. 문장 하나가 384차원 공간의 점 하나가 돼요.</dd>
+        </dl>
+      </section>
+      <section>
+        <h3>② 차원 축소</h3>
+        <dl>
+          <dt>UMAP</dt><dd>누가 누구의 이웃인지 기억한 채 고차원 공간을 납작하게 펼치는 방법. 가까운 점은 펼친 뒤에도 가까워요.</dd>
+          <dt><code>n_neighbors</code> <span>15</span></dt><dd>이웃을 몇 개까지 기억할지. 키우면 큰 그림을, 줄이면 작은 무리를 더 살려요.</dd>
+          <dt><code>n_components</code> <span>5</span></dt><dd>몇 차원으로 줄일지. 그림은 2차원으로 그렸지만 기본값은 5차원이에요.</dd>
+          <dt><code>min_dist</code> <span>0.0</span> · <code>metric</code> <span>cosine</span></dt><dd>점을 얼마나 촘촘하게 모을지, 거리를 무엇으로 잴지.</dd>
+        </dl>
+      </section>
+      <section>
+        <h3>③ 군집화</h3>
+        <dl>
+          <dt>HDBSCAN</dt><dd>점이 빽빽한 곳을 섬처럼 찾아 군집으로 묶는 방법. 토픽 개수를 미리 정하지 않아도 되고, 드문 곳의 점은 이상치로 남겨요.</dd>
+          <dt><code>min_cluster_size</code> <span>10</span></dt><dd>토픽이 되려면 최소 몇 개의 문서가 필요한지. 줄이면 작은 토픽이 많아지고, 키우면 작은 섬은 사라져요.</dd>
+          <dt><code>min_samples</code> <span>= min_cluster_size</span></dt><dd>점 하나가 '빽빽한 곳'에 있다고 보려면 이웃이 몇 개 필요한지. 키울수록 이상치가 늘어요.</dd>
+          <dt>안정성 <span>stability</span></dt><dd>수면을 내리며 섬이 얼마나 오래 버티는지. HDBSCAN은 오래 버틴 섬을 토픽으로 골라요.</dd>
+        </dl>
+      </section>
+      <section>
+        <h3>④ 토픽 표현</h3>
+        <dl>
+          <dt>토큰화 · <code>CountVectorizer</code></dt><dd>문서를 단어로 쪼개 세는 단계. 한국어는 형태소 분석기(예: <code>okt.nouns</code>)로 명사만 세면 이름이 깔끔해요.</dd>
+          <dt>c-TF-IDF</dt><dd>한 토픽의 문서를 모두 이어 붙인 '큰 문서'에서 단어 점수를 매기는 방법. <code>tf × log(1 + A ÷ f)</code></dd>
+          <dt>TF · IDF</dt><dd>TF는 그 토픽에서 단어가 나온 횟수, IDF는 여러 토픽에 두루 나오는 흔한 단어의 점수를 깎는 몫. A는 토픽 하나의 평균 단어 수, f는 전체에서의 빈도예요.</dd>
+          <dt>대표 단어 <span>representation</span></dt><dd>c-TF-IDF 점수가 높은 단어들. 토픽 이름은 번호와 상위 단어를 이어 <code>0_골_경기_감독_선수</code>처럼 만들어요.</dd>
+          <dt><code>representation_model</code></dt><dd>대표 단어를 다시 다듬는 선택 단계. <code>KeyBERTInspired</code>나 LLM으로 더 자연스러운 이름을 붙일 수 있어요.</dd>
+        </dl>
+      </section>
+      <section>
+        <h3>자주 쓰는 명령</h3>
+        <dl>
+          <dt><code>fit_transform(docs)</code></dt><dd>모델을 학습하고 문서마다 토픽 번호를 돌려줘요.</dd>
+          <dt><code>transform(new_docs)</code></dt><dd>새 문서가 어느 토픽에 속하는지 예측해요.</dd>
+          <dt><code>get_topic_info()</code> · <code>get_topic(k)</code></dt><dd>토픽 목록 표, 토픽 k의 단어와 점수.</dd>
+          <dt><code>nr_topics</code> · <code>reduce_topics()</code></dt><dd>비슷한 토픽끼리 합쳐 토픽 수를 줄여요.</dd>
+          <dt><code>reduce_outliers()</code></dt><dd>이상치(-1) 문서를 가장 알맞은 토픽에 다시 넣어요. 그 뒤 <code>update_topics()</code>로 이름을 다시 계산해요.</dd>
+          <dt><code>visualize_topics()</code></dt><dd>토픽 사이의 거리를 지도로 그려 줘요.</dd>
+        </dl>
+      </section>
+    </div>
   </section>
 
   <footer>
@@ -405,10 +615,10 @@ function hdbscan(P, mcs, ms) {
 }
 
 // c-TF-IDF: W(t,c) = tf(t,c) × log(1 + A / f(t))   (-1 이상치 묶음도 한 클래스로 계산, BERTopic과 동일)
-function ctfidf(labels) {
+function ctfidf(labels, docs = DOCS) {
   const classes = [...new Set(labels)].sort((a, b) => a - b);
   const tf = {}; classes.forEach(c => tf[c] = {});
-  DOCS.forEach((d, i) => { for (const w of d.tokens) tf[labels[i]][w] = (tf[labels[i]][w] || 0) + 1; });
+  docs.forEach((d, i) => { for (const w of d.tokens) tf[labels[i]][w] = (tf[labels[i]][w] || 0) + 1; });
   const f = {}; let total = 0;
   for (const c of classes) for (const [w, v] of Object.entries(tf[c])) { f[w] = (f[w] || 0) + v; total += v; }
   const A = total / classes.length, out = {};
@@ -1487,13 +1697,13 @@ function syncUI() {
 }
 function play() {
   if (T >= C.end - 0.01) T = 0;
-  playing = true; started = true; bigPlay.hidden = true; waterOverride = null; hideTip(); syncUI(); dirty = true;
+  playing = true; started = true; bigPlay.hidden = true; waterOverride = null; hideTip(); TTS.idx = -1; syncUI(); dirty = true;
 }
-function pause() { playing = false; syncUI(); dirty = true; }
-function seek(t, keepPlaying = true) { T = clamp(t, 0, C.end); started = true; bigPlay.hidden = true; if (!keepPlaying) playing = false; pCache.t = -1; cloudCache.t = -1; syncUI(); dirty = true; }
+function pause() { playing = false; ttsStop(); syncUI(); dirty = true; }
+function seek(t, keepPlaying = true) { T = clamp(t, 0, C.end); started = true; bigPlay.hidden = true; if (!keepPlaying) playing = false; ttsStop(); pCache.t = -1; cloudCache.t = -1; syncUI(); dirty = true; }
 function loop(ts) {
   const dt = lastTs ? Math.min(0.1, (ts - lastTs) / 1000) : 0; lastTs = ts;
-  if (playing) { T += dt * speed; if (T >= C.end) { T = C.end; playing = false; } syncUI(); dirty = true; }
+  if (playing) { T = ttsHold(T + dt * speed); if (T >= C.end) { T = C.end; playing = false; } syncUI(); ttsTick(); dirty = true; }
   if (dirty) { render(started ? T : POSTER); dirty = false; }
   requestAnimationFrame(loop);
 }
@@ -1513,6 +1723,7 @@ document.addEventListener('fullscreenchange', () => setTimeout(resize, 60));
 document.addEventListener('keydown', e => {
   const tg = e.target;
   if (tg.closest && tg.closest('input, select, textarea')) return;
+  if (tg.closest && tg.closest('#playground, #quiz, #glossary')) return; // 놀이터·퀴즈에서 누른 키는 영상을 건드리지 않음
   if (tg.closest && tg.closest('button') && (e.key === ' ' || e.key === 'Enter')) return;
   if (e.metaKey || e.ctrlKey || e.altKey) return;
   if (e.key === ' ' || e.key === 'k') { e.preventDefault(); playing ? pause() : play(); }
@@ -1520,6 +1731,7 @@ document.addEventListener('keydown', e => {
   else if (e.key === 'ArrowLeft') { e.preventDefault(); seek(T - 5); }
   else if (e.key === 'c') $('ccBtn').click();
   else if (e.key === 'f') $('fsBtn').click();
+  else if (e.key === 'v' && !$('ttsBtn').hidden) $('ttsBtn').click();
 });
 const ticks = $('ticks');
 CHAPTERS.slice(1).forEach(ch => { const i = document.createElement('i'); i.style.left = `calc(${ch.t / C.end * 100}% - 1px)`; ticks.appendChild(i); });
@@ -1587,8 +1799,8 @@ const hl = src => src.split('\n').map(line => {
   const c = esc(code).replace(/(&quot;.*?&quot;)/g, '<span class="s">$1</span>').replace(/\b(from|import)\b/g, '<span class="k">$1</span>');
   return c + (com ? `<span class="c">${esc(com)}</span>` : '');
 }).join('\n');
-function bindCopy() {
-  lab.querySelectorAll('.copy').forEach(b => b.addEventListener('click', () => {
+function bindCopy(root = lab) {
+  root.querySelectorAll('.copy').forEach(b => b.addEventListener('click', () => {
     const code = document.querySelector(`#${b.dataset.copy} code`).textContent;
     const done = () => { b.textContent = '복사됨'; setTimeout(() => b.textContent = '복사', 1400); };
     try {
@@ -1682,7 +1894,8 @@ topics, probs = topic_model.fit_transform(docs)
 
 topic_model.get_topic_info()     # 토픽 목록
 topic_model.visualize_topics()   # 토픽 지도`), 'outroCode')}
-      <p class="note" style="margin-top:12px">문서가 많을수록 결과가 좋아져요. 수백 개 이상을 권해요.</p>`;
+      <p class="note" style="margin-top:12px">문서가 많을수록 결과가 좋아져요. 수백 개 이상을 권해요.</p>
+      <p class="hint">영상 아래 <a href="#playground">놀이터</a>에서 점을 옮기고 새 문장을 놓아 보고, <a href="#quiz">퀴즈</a>로 배운 내용을 확인해 보세요.</p>`;
   }
 };
 PANELS.docs = PANELS.intro;
@@ -1743,12 +1956,466 @@ function buildLab(ci) {
 }
 
 /* =========================================================
-   8. 시작
+   8. 음성 해설 — 브라우저에 들어 있는 음성(TTS)으로 자막 읽기
+   음성이 자막을 다 읽을 때까지 영상이 그 자막 끝에서 기다린다.
+   ========================================================= */
+const TTS = { on: false, ok: !EXPORT && 'speechSynthesis' in window, busy: false, idx: -1, voice: null, u: null, since: 0, len: 0 };
+// 화면용 기호와 영문 약어를 소리 내어 읽기 좋게 바꾼다
+const TTS_READ = [
+  [/①/g, '첫째, '], [/②/g, '둘째, '], [/③/g, '셋째, '], [/④/g, '넷째, '],
+  [/c-TF-IDF/g, '씨 티에프 아이디에프'], [/\bIDF\b/g, '아이디에프'], [/\bTF\b/g, '티에프'],
+  [/KeyBERT/g, '키버트'], [/BERTopic/g, '버토픽'], [/BERT/g, '버트'], [/UMAP/g, '유맵'], [/HDBSCAN/g, '에이치디비스캔'], [/LLM/g, '엘엘엠'],
+  [/\(-1\)/g, ', 마이너스 일, '], [/[‘’“”]/g, ''], [/→/g, ', '], [/…/g, ', ']
+];
+const ttsLine = s => TTS_READ.reduce((a, [re, r]) => a.replace(re, r), s);
+function ttsVoice() {
+  if (!TTS.ok) return;
+  const vs = speechSynthesis.getVoices();
+  TTS.voice = vs.find(v => /^ko/i.test(v.lang) && /google|yuna|sun-?hi|heami|injoon|female/i.test(v.name)) || vs.find(v => /^ko/i.test(v.lang)) || null;
+}
+function ttsStop() {
+  if (TTS.ok && TTS.on) speechSynthesis.cancel();
+  TTS.busy = false; TTS.idx = -1;
+}
+function ttsSpeak(text) {
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(ttsLine(text));
+  u.lang = 'ko-KR'; if (TTS.voice) u.voice = TTS.voice;
+  u.rate = clamp(1.05 * speed, 0.6, 2);
+  u.onend = u.onerror = () => { if (TTS.u === u) TTS.busy = false; };
+  TTS.u = u; TTS.busy = true; TTS.since = performance.now(); TTS.len = text.length;
+  speechSynthesis.speak(u);
+}
+// 재생 중 다음 시각을 정할 때: 아직 읽는 중이면 지금 자막의 끝을 넘지 않는다
+function ttsHold(nt) {
+  if (!TTS.on || !TTS.busy) return nt;
+  if (performance.now() - TTS.since > (TTS.len * 0.35 + 6) * 1000) { TTS.busy = false; return nt; } // 끝났다는 신호가 오지 않을 때를 대비
+  const c = CAPTIONS[TTS.idx]; if (!c) return nt;
+  return Math.min(nt, Math.max(T, c[1] - 0.05));
+}
+function ttsTick() {
+  if (!TTS.on || !playing) return;
+  const i = CAPTIONS.findIndex(c => T >= c[0] && T < c[1]);
+  if (i >= 0 && i !== TTS.idx) { TTS.idx = i; ttsSpeak(CAPTIONS[i][2]); }
+}
+{
+  const btn = $('ttsBtn'), note = $('ttsNote');
+  if (!TTS.ok) btn.hidden = true;
+  else { ttsVoice(); speechSynthesis.addEventListener ? speechSynthesis.addEventListener('voiceschanged', ttsVoice) : (speechSynthesis.onvoiceschanged = ttsVoice); }
+  btn.addEventListener('click', () => {
+    TTS.on = !TTS.on; btn.setAttribute('aria-pressed', String(TTS.on));
+    if (TTS.on) {
+      ttsVoice(); TTS.idx = -1;
+      note.textContent = TTS.voice
+        ? `음성 해설 켜짐 · ${TTS.voice.name}. 음성이 자막을 다 읽을 때까지 영상이 잠깐씩 기다려요.`
+        : '음성 해설 켜짐 · 이 브라우저에는 한국어 음성이 없어 기본 음성으로 읽어요. 운영체제 설정에서 한국어 음성을 추가하면 더 자연스러워요.';
+      note.hidden = false;
+      if (!started) { T = 0; play(); }
+    } else { speechSynthesis.cancel(); TTS.busy = false; TTS.idx = -1; note.hidden = true; }
+  });
+}
+
+/* =========================================================
+   9. 놀이터 — 점을 옮기거나 새 문장을 놓으면 HDBSCAN · c-TF-IDF를 다시 계산
+   ========================================================= */
+const VOCAB = new Set(DOCS.flatMap(d => d.tokens));
+const JOSA = ['에서는', '에서도', '에게서', '으로는', '이랑', '에서', '에게', '까지', '부터', '으로', '처럼', '보다', '하고', '이나', '이고', '은', '는', '이', '가', '을', '를', '에', '의', '와', '과', '도', '만', '로', '랑'];
+const HADA = /(했다|한다|하는|하고|해서|했고|했어|해요|합니다|하다|하며|하면|했던)$/;
+const STOPW = new Set(['그', '이', '저', '것', '수', '등', '더', '또', '잘', '안', '못', '좀', '꼭', '너무', '아주', '매우', '다시', '이번', '모두', '그리고', '하지만', '그래서', '지금']);
+// 아주 단순한 한국어 토크나이저: 어절에서 조사를 떼고 명사처럼 보이는 것만 고른다 (형태소 분석기 흉내)
+function pickWord(w) {
+  if (VOCAB.has(w)) return { t: w, on: true };
+  for (const j of JOSA) if (w.length > j.length && w.endsWith(j) && VOCAB.has(w.slice(0, -j.length))) return { t: w.slice(0, -j.length), on: true };
+  const h = w.match(HADA); if (h && w.length - h[0].length >= 2) return { t: w.slice(0, -h[0].length), on: true };
+  if (/^[A-Za-z0-9]+$/.test(w)) return { t: w, on: w.length >= 2 };
+  for (const j of JOSA) if (w.length > j.length && w.endsWith(j)) { const s = w.slice(0, -j.length); return { t: s, on: s.length >= 2 && !STOPW.has(s) }; }
+  if (/[다요죠네까지]$/.test(w)) return { t: w, on: false };
+  return { t: w, on: w.length >= 2 && !STOPW.has(w) };
+}
+const guessTokens = text => text.replace(/[^0-9A-Za-z가-힣\s]/g, ' ').split(/\s+/).filter(Boolean).map(w => ({ w, ...pickWord(w) }));
+
+const PG = { docs: [], mcs: 10, ms: 10, msAuto: true, nr: 0, red: false, sel: null, hover: -1, drag: null, place: null, toks: [], res: null, sig: '', dirty: true, need: false, ptr: null };
+const relabelBySize = L => {
+  const cnt = {}; L.forEach(l => { if (l >= 0) cnt[l] = (cnt[l] || 0) + 1; });
+  const m = {}; Object.keys(cnt).map(Number).sort((a, b) => cnt[b] - cnt[a] || a - b).forEach((l, i) => m[l] = i);
+  return L.map(l => l < 0 ? -1 : m[l]);
+};
+function topicVecs(L, docs) {
+  const ct = ctfidf(L, docs), V = {};
+  for (const c of ct.classes) { if (c < 0) continue; const v = {}; ct.out[c].forEach(o => v[o.w] = o.score); V[c] = v; }
+  return V;
+}
+const vcos = (a, b) => { let d = 0, na = 0, nb = 0; for (const k in a) { na += a[k] * a[k]; if (b[k]) d += a[k] * b[k]; } for (const k in b) nb += b[k] * b[k]; return na && nb ? d / Math.sqrt(na * nb) : 0; };
+// nr_topics: 가장 작은 토픽을 단어 점수(c-TF-IDF)가 가장 비슷한 토픽에 합치기를 반복
+function mergeTopics(L, docs, nr) {
+  L = L.slice();
+  for (let guard = 0; guard < 60; guard++) {
+    const ks = [...new Set(L.filter(l => l >= 0))]; if (ks.length <= nr) break;
+    const cnt = k => L.reduce((s, l) => s + (l === k), 0);
+    const small = ks.slice().sort((a, b) => cnt(a) - cnt(b) || b - a)[0];
+    const V = topicVecs(L, docs); let best = -1, bs = -1;
+    for (const k of ks) if (k !== small) { const sc = vcos(V[small] || {}, V[k] || {}); if (sc > bs) { bs = sc; best = k; } }
+    L = L.map(l => l === small ? best : l);
+  }
+  return relabelBySize(L);
+}
+// reduce_outliers(strategy="embeddings") 흉내: 이상치를 지도에서 가장 가까운 토픽 중심으로
+function reduceOut(L, docs) {
+  const cen = {};
+  L.forEach((l, i) => { if (l < 0) return; const c = cen[l] || (cen[l] = [0, 0, 0]); c[0] += docs[i].x; c[1] += docs[i].y; c[2]++; });
+  const ks = Object.keys(cen).map(Number); if (!ks.length) return L;
+  return L.map((l, i) => {
+    if (l >= 0) return l;
+    let bk = ks[0], bd = Infinity;
+    for (const k of ks) { const c = cen[k], d = Math.hypot(docs[i].x - c[0] / c[2], docs[i].y - c[1] / c[2]); if (d < bd) { bd = d; bk = k; } }
+    return bk;
+  });
+}
+function pgRun() {
+  const D = PG.docs, n = D.length;
+  let L = n >= 3 ? hdbscan(D.map(d => [d.x, d.y]), PG.mcs, PG.msAuto ? PG.mcs : PG.ms) : D.map(() => -1);
+  if (PG.nr > 0) L = mergeTopics(L, D, PG.nr);
+  if (PG.red) L = reduceOut(L, D);
+  const ct = ctfidf(L, D), K = Math.max(-1, ...L) + 1, topics = [];
+  for (let k = -1; k < K; k++) {
+    const idx = []; L.forEach((l, i) => { if (l === k) idx.push(i); });
+    if (!idx.length) continue;
+    const words = (ct.out[k] || []).slice(0, 10);
+    topics.push({
+      k, idx, n: idx.length, words,
+      cx: idx.reduce((s, i) => s + D[i].x, 0) / idx.length, top: idx.map(i => D[i].y).sort((a, b) => a - b)[Math.floor(idx.length * 0.15)],
+      name: `${k}_${words.slice(0, 4).map(o => o.w).join('_')}`
+    });
+  }
+  const byK = {}; topics.forEach(tp => byK[tp.k] = tp);
+  PG.res = { L, K, ct, topics, byK, noise: L.filter(l => l < 0).length };
+  if (PG.sel != null && !byK[PG.sel]) PG.sel = null;
+  PG.dirty = true;
+  const sig = [L.join(','), n, PG.sel, D.map(d => d.tokens.join('·')).join('|').length].join(';');
+  if (sig !== PG.sig) { PG.sig = sig; pgPanels(); } else pgStat();
+}
+function pgReset() {
+  PG.docs = DOCS.map(d => ({ text: d.text, tokens: d.tokens.slice(), x: d.x, y: d.y, user: false }));
+  Object.assign(PG, { mcs: 10, ms: 10, msAuto: true, nr: 0, red: false, sel: null, hover: -1, place: null });
+  $('pgMcs').value = 10; $('pgMcsV').textContent = 10; $('pgMs').value = 10; $('pgMsV').textContent = 10; $('pgMs').disabled = true;
+  $('pgMsAuto').checked = true; $('pgNr').value = '0'; $('pgRed').checked = false; $('pgMode').hidden = true;
+  PG.sig = ''; pgRun();
+}
+
+/* ---------- 놀이터 표 · 막대 · 코드 ---------- */
+function pgStat() {
+  const R = PG.res;
+  $('pgStat').innerHTML = `<span>토픽 <b>${R.K}</b>개</span><span>이상치 <b>${R.noise}</b>개</span><span>문서 <b>${PG.docs.length}</b>개</span><span class="sp"></span><span class="kb">끌기: 옮기기 · 두 번 누르기: 빼기 · 점 누르기: 그 토픽 보기</span>`;
+}
+function pgPanels() {
+  const R = PG.res; pgStat();
+  const rows = R.topics.slice().sort((a, b) => a.k - b.k);
+  $('pgInfo').innerHTML = `<table class="tbl tinfo"><thead><tr><th>Topic</th><th>Count</th><th>Name</th><th>Representation</th></tr></thead><tbody>${rows.map(tp => `<tr class="${tp.k === PG.sel ? 'on' : ''}"><td><button type="button" class="pick" data-k="${tp.k}" aria-pressed="${tp.k === PG.sel}"><span class="sw" style="background:${tc(tp.k)}"></span>${tp.k}</button></td><td>${tp.n}</td><td><code>${esc(tp.name)}</code></td><td class="reps">${tp.words.slice(0, 6).map(o => esc(o.w)).join(', ') || '–'}</td></tr>`).join('')}</tbody></table>`;
+  const tp = PG.sel != null ? R.byK[PG.sel] : R.byK[0] || null;
+  $('pgWordsTitle').innerHTML = `토픽 단어 점수 <code>get_topic(${tp ? tp.k : 0})</code>`;
+  if (!tp) $('pgWords').innerHTML = '<p class="note" style="margin:0">토픽이 없어요. min_cluster_size를 줄여 보세요.</p>';
+  else {
+    const top = tp.words.slice(0, 8), mx = Math.max(...top.map(o => o.score), 1e-9);
+    $('pgWords').innerHTML = top.map(o => `<div><span>${esc(o.w)}</span><i style="width:${Math.max(3, o.score / mx * 100)}%;background:${tc(tp.k)}"></i><span>${o.score.toFixed(2)}</span></div>`).join('')
+      + `<p class="note" style="margin:6px 0 0">점수 = 이 토픽에서의 빈도 × log(1 + A ÷ 전체 빈도)${tp.k < 0 ? '. 이상치(-1)도 하나의 묶음으로 계산해요.' : ''}</p>`;
+  }
+  const hp = [`min_cluster_size=${PG.mcs}`]; if (!PG.msAuto) hp.push(`min_samples=${PG.ms}`); hp.push('prediction_data=True');
+  const src = `from bertopic import BERTopic
+from hdbscan import HDBSCAN
+from sentence_transformers import SentenceTransformer
+
+embedding_model = SentenceTransformer("paraphrase-multilingual-MiniLM-L12-v2")
+embeddings = embedding_model.encode(docs)
+
+hdbscan_model = HDBSCAN(${hp.join(', ')})
+topic_model = BERTopic(embedding_model=embedding_model,
+                       hdbscan_model=hdbscan_model${PG.nr ? `,\n                       nr_topics=${PG.nr}` : ''})
+topics, probs = topic_model.fit_transform(docs, embeddings)${PG.red ? `
+
+# 이상치(-1)를 가장 가까운 토픽으로
+topics = topic_model.reduce_outliers(docs, topics, strategy="embeddings", embeddings=embeddings)
+topic_model.update_topics(docs, topics=topics)` : ''}
+
+topic_model.get_topic_info()`;
+  const box = $('pgCode'); box.innerHTML = codeBlock(hl(src), 'pgCodeBlock'); bindCopy(box);
+}
+
+/* ---------- 놀이터 지도 그리기 ---------- */
+const pcv = $('pgCanvas'), pctx = pcv.getContext('2d'), pTip = $('pgTip');
+let PS = 1, PZ = 1; // PZ: 좁은 화면에서 점과 이름표를 키우는 배율
+const PV = { cx: 640, cy: 372, s: 355 };
+const pToS = (x, y) => [PV.cx + x * PV.s, PV.cy + y * PV.s];
+const pFromS = (sx, sy) => [clamp((sx - PV.cx) / PV.s, XMIN, XMAX), clamp((sy - PV.cy) / PV.s, YMIN, YMAX)];
+const pgBg = document.createElement('canvas'), pbx = pgBg.getContext('2d');
+const pgLay = document.createElement('canvas'); pgLay.width = 320; pgLay.height = 180; // 섬은 작게 그려 흐리게 늘린다
+const plx = pgLay.getContext('2d');
+const pgLay2 = document.createElement('canvas'); pgLay2.width = 320; pgLay2.height = 180;
+const plx2 = pgLay2.getContext('2d');
+function pgResize() {
+  const r = pcv.getBoundingClientRect(), dpr = Math.min(2, window.devicePixelRatio || 1);
+  pcv.width = Math.max(320, Math.round(r.width * dpr)); pcv.height = Math.round(pcv.width * 9 / 16); PS = pcv.width / W;
+  PZ = clamp(900 / Math.max(1, r.width), 1, 2.4);
+  pgBg.width = pcv.width; pgBg.height = pcv.height; pbx.setTransform(PS, 0, 0, PS, 0, 0);
+  const g = pbx.createRadialGradient(640, 330, 60, 640, 360, 820);
+  g.addColorStop(0, '#12283D'); g.addColorStop(1, '#08121C');
+  pbx.fillStyle = g; pbx.fillRect(0, 0, W, H);
+  pbx.fillStyle = 'rgba(140,180,210,0.075)';
+  for (let x = 20; x < W; x += 40) for (let y = 20; y < H; y += 40) pbx.fillRect(x - 1, y - 1, 2, 2);
+  PG.dirty = true;
+}
+function ppill(str, x, y, o) {
+  const fs = 16 * PZ;
+  pctx.font = fnt(fs, 700);
+  const w = pctx.measureText(str).width + 22 * PZ, h = fs + 13 * PZ;
+  x = clamp(x, w / 2 + 6, W - w / 2 - 6); y = Math.max(h / 2 + 6, y);
+  pctx.beginPath(); pctx.roundRect ? pctx.roundRect(x - w / 2, y - h / 2, w, h, h / 2) : pctx.rect(x - w / 2, y - h / 2, w, h);
+  pctx.fillStyle = o.bg || 'rgba(8,18,28,0.88)'; pctx.fill();
+  if (o.stroke) { pctx.strokeStyle = o.stroke; pctx.lineWidth = 1.2; pctx.stroke(); }
+  pctx.fillStyle = o.fg || S.text; pctx.textAlign = 'center'; pctx.textBaseline = 'middle'; pctx.fillText(str, x, y + 0.5);
+}
+function pgDraw() {
+  pctx.setTransform(1, 0, 0, 1, 0, 0); pctx.globalAlpha = 1; pctx.drawImage(pgBg, 0, 0);
+  const R = PG.res; if (!R) return;
+  const P = PG.docs.map(d => pToS(d.x, d.y)), sel = PG.sel;
+  // 섬: 토픽마다 원을 합친 모양을 작게 그린 뒤 흐리게 늘린다
+  for (const tp of R.topics) {
+    if (tp.k < 0) continue;
+    plx.setTransform(1, 0, 0, 1, 0, 0); plx.clearRect(0, 0, 320, 180); plx.setTransform(0.25, 0, 0, 0.25, 0, 0);
+    plx.fillStyle = tc(tp.k);
+    for (const i of tp.idx) { plx.beginPath(); plx.arc(P[i][0], P[i][1], 34, 0, Math.PI * 2); plx.fill(); }
+    plx2.clearRect(0, 0, 320, 180); plx2.filter = 'blur(2px)'; plx2.drawImage(pgLay, 0, 0); plx2.filter = 'none';
+    pctx.save(); pctx.globalAlpha = sel == null || sel === tp.k ? 0.36 : 0.08; pctx.imageSmoothingEnabled = true; pctx.imageSmoothingQuality = 'high';
+    pctx.drawImage(pgLay2, 0, 0, pcv.width, pcv.height); pctx.restore();
+  }
+  pctx.setTransform(PS, 0, 0, PS, 0, 0);
+  // 점
+  PG.docs.forEach((d, i) => {
+    const l = R.L[i], [x, y] = P[i];
+    pctx.globalAlpha = sel != null && l !== sel ? 0.35 : 1;
+    const r = (d.user ? 8 : 6.5) * PZ;
+    pctx.beginPath(); pctx.arc(x, y, r, 0, Math.PI * 2);
+    if (l < 0) { pctx.fillStyle = '#0E1D2C'; pctx.fill(); pctx.strokeStyle = '#9FB0C0'; pctx.lineWidth = 1.6; pctx.stroke(); }
+    else { pctx.fillStyle = tc(l); pctx.fill(); pctx.strokeStyle = 'rgba(8,19,29,0.8)'; pctx.lineWidth = 1; pctx.stroke(); }
+    if (d.user) { pctx.beginPath(); pctx.arc(x, y, r + 4 * PZ, 0, Math.PI * 2); pctx.strokeStyle = '#FFFFFF'; pctx.lineWidth = 1.6; pctx.stroke(); }
+    if (i === PG.hover) { pctx.beginPath(); pctx.arc(x, y, r + 7 * PZ, 0, Math.PI * 2); pctx.strokeStyle = S.accent; pctx.lineWidth = 2; pctx.stroke(); }
+  });
+  pctx.globalAlpha = 1;
+  // 이름표
+  for (const tp of R.topics) {
+    if (tp.k < 0) continue;
+    const [x] = pToS(tp.cx, 0), [, y] = pToS(0, tp.top);
+    pctx.globalAlpha = sel == null || sel === tp.k ? 1 : 0.45;
+    ppill(`${tp.k} · ${tp.words.slice(0, 3).map(o => o.w).join(' · ') || '단어 없음'}`, x, y - 26 * PZ, { fg: mix(tc(tp.k), '#FFFFFF', 0.45), stroke: rgba(tc(tp.k), 0.8) });
+  }
+  pctx.globalAlpha = 1;
+  // 문장을 놓는 중이면 손끝에 미리 보기
+  if (PG.place && PG.ptr) {
+    const [x, y] = PG.ptr;
+    pctx.beginPath(); pctx.arc(x, y, 9 * PZ, 0, Math.PI * 2); pctx.fillStyle = 'rgba(245,195,67,0.9)'; pctx.fill();
+    ppill(PG.place.text.length > 24 ? PG.place.text.slice(0, 23) + '…' : PG.place.text, x, y - 28 * PZ, { bg: 'rgba(245,195,67,0.95)', fg: '#1B1405' });
+  }
+}
+
+/* ---------- 놀이터 조작 ---------- */
+function pgPt(e) { const r = pcv.getBoundingClientRect(); return [(e.clientX - r.left) / r.width * W, (e.clientY - r.top) / r.height * H, r]; }
+function pgHit(x, y) { let best = -1, bd = 15 * PZ; PG.docs.forEach((d, i) => { const [sx, sy] = pToS(d.x, d.y), dd = Math.hypot(sx - x, sy - y); if (dd < bd) { bd = dd; best = i; } }); return best; }
+function pgShowTip(i, x, y, r) {
+  const d = PG.docs[i], l = PG.res.L[i], tp = PG.res.byK[l];
+  pTip.innerHTML = `<div>${esc(d.text)}</div><div>${d.tokens.map(w => `<span class="tk">${esc(w)}</span>`).join('') || '<span class="tk">뽑힌 단어 없음</span>'}</div><div class="tp"><span class="dot" style="background:${tc(l)}"></span>${d.user ? '직접 놓은 문장 · ' : ''}${l < 0 ? '이상치 (-1)' : `토픽 ${l} · ${esc(tp.name)}`}</div>`;
+  pTip.hidden = false;
+  const px = x / W * r.width, py = y / H * r.height, w = pTip.offsetWidth, h = pTip.offsetHeight;
+  pTip.style.transform = `translate(${Math.round(clamp(px + 14, 6, r.width - w - 6))}px, ${Math.round(py - h - 12 < 6 ? py + 16 : py - h - 12)}px)`;
+}
+function pgCancelPlace() { PG.place = null; $('pgMode').hidden = true; PG.dirty = true; }
+function pgRenderToks() {
+  $('pgToks').innerHTML = PG.toks.map((o, k) => `<button type="button" class="chipbtn" data-k="${k}" aria-pressed="${o.on}" title="${esc(o.w)}">${esc(o.t)}</button>`).join('');
+}
+function pgStartPlace() {
+  const text = $('pgText').value.trim();
+  if (!text) { $('pgText').focus(); return; }
+  if (!PG.toks.length) PG.toks = guessTokens(text);
+  PG.place = { text, tokens: [...new Set(PG.toks.filter(o => o.on).map(o => o.t))] };
+  $('pgMode').hidden = false; pcv.focus(); PG.dirty = true;
+}
+pcv.addEventListener('pointerdown', e => {
+  const [x, y] = pgPt(e);
+  if (PG.place) {
+    const [dx, dy] = pFromS(x, y);
+    PG.docs.push({ text: PG.place.text, tokens: PG.place.tokens, x: dx, y: dy, user: true });
+    pgCancelPlace(); $('pgText').value = ''; PG.toks = []; pgRenderToks();
+    pgRun();
+    const l = PG.res.L[PG.docs.length - 1]; PG.sel = l; PG.sig = ''; pgRun();
+    return;
+  }
+  const i = pgHit(x, y);
+  if (i >= 0) { PG.drag = { i, sx: x, sy: y, moved: false }; pcv.setPointerCapture(e.pointerId); }
+});
+pcv.addEventListener('pointermove', e => {
+  const [x, y, r] = pgPt(e); PG.ptr = [x, y];
+  if (PG.drag) {
+    const d = PG.drag;
+    if (!d.moved && Math.hypot(x - d.sx, y - d.sy) > 4) d.moved = true;
+    if (d.moved) { const [dx, dy] = pFromS(x, y); PG.docs[d.i].x = dx; PG.docs[d.i].y = dy; PG.need = true; pgShowTip(d.i, x, y, r); }
+  } else {
+    const i = pgHit(x, y);
+    if (i !== PG.hover) { PG.hover = i; PG.dirty = true; }
+    if (i >= 0 && !PG.place) pgShowTip(i, x, y, r); else pTip.hidden = true;
+  }
+  if (PG.place) PG.dirty = true;
+  pcv.style.cursor = PG.place ? 'crosshair' : PG.drag && PG.drag.moved ? 'grabbing' : PG.hover >= 0 ? 'grab' : 'default';
+});
+pcv.addEventListener('pointerup', () => {
+  const d = PG.drag; PG.drag = null; if (!d) return;
+  if (!d.moved) { const l = PG.res.L[d.i]; PG.sel = PG.sel === l ? null : l; PG.sig = ''; pgRun(); }
+});
+pcv.addEventListener('pointerleave', () => { if (!PG.drag) { PG.hover = -1; PG.ptr = null; pTip.hidden = true; PG.dirty = true; } });
+pcv.addEventListener('dblclick', e => {
+  const [x, y] = pgPt(e), i = pgHit(x, y); if (i < 0) return;
+  PG.docs.splice(i, 1); PG.hover = -1; pTip.hidden = true; pgRun();
+});
+pcv.addEventListener('keydown', e => { if (e.key === 'Escape') pgCancelPlace(); });
+$('pgMcs').addEventListener('input', e => {
+  PG.mcs = +e.target.value; $('pgMcsV').textContent = PG.mcs;
+  if (PG.msAuto) { PG.ms = PG.mcs; $('pgMs').value = PG.mcs; $('pgMsV').textContent = PG.mcs; }
+  pgRun();
+});
+$('pgMs').addEventListener('input', e => { PG.ms = +e.target.value; $('pgMsV').textContent = PG.ms; pgRun(); });
+$('pgMsAuto').addEventListener('change', e => {
+  PG.msAuto = e.target.checked; $('pgMs').disabled = PG.msAuto;
+  if (PG.msAuto) { PG.ms = PG.mcs; $('pgMs').value = PG.mcs; $('pgMsV').textContent = PG.mcs; }
+  PG.sig = ''; pgRun();
+});
+$('pgNr').addEventListener('change', e => { PG.nr = +e.target.value; PG.sig = ''; pgRun(); });
+$('pgRed').addEventListener('change', e => { PG.red = e.target.checked; PG.sig = ''; pgRun(); });
+$('pgReset').addEventListener('click', pgReset);
+$('pgPlace').addEventListener('click', pgStartPlace);
+$('pgText').addEventListener('input', e => { PG.toks = guessTokens(e.target.value); pgRenderToks(); });
+$('pgText').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); pgStartPlace(); } });
+$('pgToks').addEventListener('click', e => {
+  const b = e.target.closest('.chipbtn'); if (!b) return;
+  const o = PG.toks[+b.dataset.k]; o.on = !o.on; b.setAttribute('aria-pressed', String(o.on));
+  if (PG.place) PG.place.tokens = [...new Set(PG.toks.filter(x => x.on).map(x => x.t))];
+});
+$('pgSamples').innerHTML = ['손흥민이 두 골을 넣었다', '화성 탐사선이 사진을 보냈다', '고양이 사료를 바꿨다', '금리가 또 올랐다', '마늘 소스 파스타 레시피', '오늘 점심 뭐 먹지'].map(t => `<button type="button" class="chipbtn">${t}</button>`).join('');
+$('pgSamples').addEventListener('click', e => {
+  const b = e.target.closest('.chipbtn'); if (!b) return;
+  $('pgText').value = b.textContent; PG.toks = guessTokens(b.textContent); pgRenderToks(); pgStartPlace();
+});
+$('pgInfo').addEventListener('click', e => {
+  const b = e.target.closest('.pick'); if (!b) return;
+  const k = +b.dataset.k; PG.sel = PG.sel === k ? null : k; PG.sig = ''; pgRun();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && PG.place) pgCancelPlace(); });
+function pgLoop() {
+  if (PG.need) { PG.need = false; pgRun(); }
+  if (PG.dirty) { PG.dirty = false; pgDraw(); }
+  requestAnimationFrame(pgLoop);
+}
+
+/* =========================================================
+   10. 퀴즈
+   ========================================================= */
+// 그림 문제: 세 무리와 외딴 점 하나. 이상치 판정은 이 페이지의 HDBSCAN이 직접 한다.
+const QZ = (() => {
+  const r = mulberry32(31), pts = [];
+  const g = () => { let u = 0, v = 0; while (!u) u = r(); while (!v) v = r(); return Math.max(-1.8, Math.min(1.8, Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v))); };
+  [[110, 70], [285, 62], [215, 142]].forEach(([cx, cy]) => { for (let k = 0; k < 7; k++) pts.push([cx + g() * 16, cy + g() * 13]); });
+  const lone = pts.length; pts.push([352, 160]);
+  const L = hdbscan(pts, 4);
+  // 보기: 외딴 점 + 각 무리에서 가장자리에 있는 점(그래도 무리에 속한 점)
+  const cand = [lone];
+  [0, 1, 2].forEach(gi => {
+    const ids = [0, 1, 2, 3, 4, 5, 6].map(k => gi * 7 + k).filter(i => L[i] >= 0);
+    const cx = ids.reduce((s, i) => s + pts[i][0], 0) / ids.length, cy = ids.reduce((s, i) => s + pts[i][1], 0) / ids.length;
+    cand.push(ids.sort((a, b) => Math.hypot(pts[b][0] - cx, pts[b][1] - cy) - Math.hypot(pts[a][0] - cx, pts[a][1] - cy))[0]);
+  });
+  const order = [2, 0, 3, 1].map(k => cand[k]); // 보기 순서 섞기 (A~D)
+  return { pts, L, cand: order, answer: order.indexOf(lone), ok: L[lone] < 0 && order.every(i => i === lone || L[i] >= 0) };
+})();
+const QS = [
+  { q: 'BERTopic이 토픽을 찾는 네 단계의 순서로 맞는 것은?', opts: ['군집화 → 임베딩 → c-TF-IDF → 차원 축소', '차원 축소 → 임베딩 → 군집화 → c-TF-IDF', '임베딩 → 차원 축소 → 군집화 → c-TF-IDF', 'c-TF-IDF → 임베딩 → 차원 축소 → 군집화'], a: 2, why: '숫자로 바꾸고(임베딩) → 펼치고(UMAP) → 무리 짓고(HDBSCAN) → 이름 붙이기(c-TF-IDF).' },
+  { q: '‘강아지와 공원을 산책했다’와 ‘반려견이랑 동네 한 바퀴 돌았다’는 겹치는 단어가 없는데도 임베딩이 아주 가까워요. 왜일까요?', opts: ['두 문장의 길이가 비슷해서', '언어 모델이 뜻이 비슷하면 숫자도 비슷해지도록 문장을 요약해서', '같은 글자가 많이 들어 있어서', '우연히 그렇게 된 것'], a: 1, why: '문장 임베딩 모델은 단어가 아니라 뜻을 숫자로 요약해요. 그래서 표현이 달라도 뜻이 비슷하면 가까워져요.' },
+  { q: 'UMAP이 하는 일은?', opts: ['문서를 토픽으로 나눈다', '단어가 나온 횟수를 센다', '토픽에 이름을 붙인다', '이웃 관계를 지키면서 차원을 줄인다'], a: 3, why: '말린 종이를 펴듯이, 가까웠던 점은 펼친 뒤에도 가깝게 남도록 차원을 줄여요.' },
+  { q: 'BERTopic에서 UMAP의 기본 n_components(줄인 뒤의 차원 수)는?', opts: ['2', '5', '15', '384'], a: 1, why: '영상 그림은 보기 쉽게 2차원이지만 기본값은 5차원이에요. 15는 n_neighbors, 384는 임베딩의 차원이에요.' },
+  { q: '이 지도에 min_cluster_size=4로 HDBSCAN을 돌리면, A~D 중 어느 점이 이상치(-1)로 남을까요? 점을 누르거나 아래 단추를 고르세요.', canvas: true, a: QZ.answer, why: '빽빽한 섬에서 멀리 떨어진 외딴 점은 어느 군집에도 넣지 않고 -1로 남겨요. 섬 가장자리에 있어도 무리 가까이 있는 점은 그 섬에 들어가요.' },
+  { q: 'HDBSCAN으로 군집을 찾을 때의 장점은?', opts: ['모든 문서가 반드시 어느 토픽엔가 들어간다', '단어 수를 대신 세어 준다', '토픽 개수를 미리 정하지 않아도 된다', '임베딩이 필요 없다'], a: 2, why: '빽빽한 곳을 스스로 찾기 때문에 토픽 개수를 정할 필요가 없어요. 대신 어디에도 속하지 않는 문서는 이상치로 남아요.' },
+  { q: 'min_cluster_size를 크게 하면 보통 어떻게 될까요?', opts: ['토픽 수가 늘어난다', '이상치가 모두 사라진다', '토픽 이름만 바뀐다', '작은 섬이 토픽이 되지 못해 토픽 수가 줄어든다'], a: 3, why: '최소 크기보다 작은 무리는 토픽이 될 수 없어서, 이웃 섬에 합쳐지거나 이상치가 돼요. 놀이터에서 직접 바꿔 보세요.' },
+  { q: '축구 섬에서 ‘골’은 5번, ‘오늘’은 4번 나왔어요. ‘오늘’은 모든 섬에 두루 나와요. 이름표로 더 알맞은 단어는?', opts: ['오늘: 전체에서 가장 많이 나와서', '둘 다 점수가 같다', '골: 이 섬에서 자주 나오고 다른 섬에는 드물어서 c-TF-IDF 점수가 높다', '오늘: 문장 맨 앞에 자주 나와서'], a: 2, why: 'IDF가 여러 섬에 두루 나오는 흔한 단어의 점수를 깎아요. 이 섬에서 자주, 다른 섬에서 드물게 나오는 단어가 이름표가 돼요.' },
+  { q: 'c-TF-IDF는 무엇을 하나의 ‘문서’로 보고 단어 점수를 계산할까요?', opts: ['한 토픽(섬)의 문서를 모두 이어 붙인 큰 문서', '문장 하나하나', '전체 문서 모음 한 덩어리', '단어 하나'], a: 0, why: '클래스(토픽)별로 문서를 합쳐 큰 문서를 만든 뒤 계산해서 이름에 c(class)가 붙었어요.' },
+  { q: '한국어 문서에서 토픽 이름을 깔끔하게 만드는 좋은 방법은?', opts: ['min_cluster_size를 1로 한다', '임베딩 단계를 뺀다', '문서를 모두 영어로 번역한다', '형태소 분석기로 명사만 세도록 vectorizer_model을 바꾼다'], a: 3, why: 'CountVectorizer(tokenizer=okt.nouns)처럼 명사만 세면 조사나 어미가 이름표에 끼지 않아요.' }
+];
+if (!QZ.ok) console.warn('퀴즈 5번: HDBSCAN 결과와 정답 표시가 맞지 않아요. 점 좌표를 확인하세요.');
+const QST = QS.map(() => ({ done: false, ok: false, pick: null }));
+function qzDraw(cv, st) {
+  const g = cv.getContext('2d'), sc = cv.width / 400;
+  g.setTransform(sc, 0, 0, sc, 0, 0);
+  g.fillStyle = '#0A1520'; g.fillRect(0, 0, 400, 200);
+  g.fillStyle = 'rgba(140,180,210,0.08)'; for (let x = 10; x < 400; x += 20) for (let y = 10; y < 200; y += 20) g.fillRect(x - 0.5, y - 0.5, 1, 1);
+  QZ.pts.forEach((p, i) => {
+    const ci = QZ.cand.indexOf(i);
+    let col = '#DCE8F2';
+    if (st.done && QZ.L[i] >= 0) col = tc(QZ.L[i]);
+    g.beginPath(); g.arc(p[0], p[1], ci >= 0 ? 5 : 4, 0, Math.PI * 2);
+    if (st.done && QZ.L[i] < 0) { g.fillStyle = '#0E1D2C'; g.fill(); g.strokeStyle = '#9FB0C0'; g.lineWidth = 1.4; g.stroke(); }
+    else { g.fillStyle = col; g.fill(); }
+    if (ci >= 0) {
+      const L = 'ABCD'[ci], hov = cv._hover === ci && !st.done;
+      g.beginPath(); g.arc(p[0], p[1], 9, 0, Math.PI * 2); g.strokeStyle = st.done && ci === QZ.answer ? '#7BE0A6' : st.done && ci === st.pick ? '#FF8E8E' : hov ? '#7CC4F2' : 'rgba(245,195,67,0.9)'; g.lineWidth = 1.6; g.stroke();
+      g.font = fnt(11, 700); g.fillStyle = '#F5C343'; g.textAlign = 'left'; g.textBaseline = 'middle'; g.fillText(L, p[0] + 11, p[1] - 9);
+    }
+  });
+}
+function qzRender() {
+  const root = $('quizList'); root.innerHTML = '';
+  QS.forEach((q, qi) => {
+    const st = QST[qi], li = document.createElement('li');
+    li.className = 'q' + (st.done ? (st.ok ? ' ok' : ' no') : '');
+    li.innerHTML = `<p class="qt"><span class="qn">Q${qi + 1}</span>${esc(q.q)}</p>`;
+    let opts = q.opts;
+    if (q.canvas) {
+      const cv = document.createElement('canvas'); cv.width = 800; cv.height = 400; cv.className = 'qcv';
+      cv.setAttribute('role', 'img'); cv.setAttribute('aria-label', '점 22개가 세 무리와 외딴 점으로 흩어진 지도. A부터 D까지 표시된 점 중 하나를 고르는 문제');
+      const pick = e => { const r = cv.getBoundingClientRect(), x = (e.clientX - r.left) / r.width * 400, y = (e.clientY - r.top) / r.height * 200; return QZ.cand.findIndex(i => Math.hypot(QZ.pts[i][0] - x, QZ.pts[i][1] - y) < 13); };
+      cv.addEventListener('mousemove', e => { const k = pick(e); if (k !== cv._hover) { cv._hover = k; qzDraw(cv, st); } cv.style.cursor = k >= 0 && !st.done ? 'pointer' : 'default'; });
+      cv.addEventListener('click', e => { const k = pick(e); if (k >= 0) qzAnswer(qi, k); });
+      li.appendChild(cv); qzDraw(cv, st);
+      opts = ['A', 'B', 'C', 'D'];
+    }
+    const box = document.createElement('div'); box.className = q.canvas ? 'qopts qkeys' : 'qopts';
+    opts.forEach((o, oi) => {
+      const b = document.createElement('button'); b.type = 'button'; b.textContent = o;
+      if (st.done) { b.disabled = true; if (oi === q.a) b.classList.add('right'); else if (oi === st.pick) b.classList.add('wrong'); }
+      b.addEventListener('click', () => qzAnswer(qi, oi));
+      box.appendChild(b);
+    });
+    li.appendChild(box);
+    if (st.done) { const p = document.createElement('p'); p.className = 'qwhy'; p.innerHTML = `<b>${st.ok ? '정답!' : '아쉬워요.'}</b> ${esc(q.why)}`; li.appendChild(p); }
+    root.appendChild(li);
+  });
+  const done = QST.filter(s => s.done).length, ok = QST.filter(s => s.ok).length;
+  $('quizScore').textContent = done === QS.length
+    ? `${ok} / ${QS.length} 맞혔어요. ${ok === QS.length ? 'BERTopic의 네 단계를 모두 이해했네요!' : ok >= 7 ? '거의 다 왔어요. 틀린 문제의 해설을 읽어 보세요.' : '영상의 해당 장면을 다시 보고 도전해 보세요.'}`
+    : `${done} / ${QS.length} 문제 풀이 · ${ok}개 정답`;
+}
+function qzAnswer(qi, pick) {
+  const st = QST[qi]; if (st.done) return;
+  Object.assign(st, { done: true, pick, ok: pick === QS[qi].a }); qzRender();
+}
+$('quizReset').addEventListener('click', () => { QST.forEach(s => Object.assign(s, { done: false, ok: false, pick: null })); qzRender(); });
+
+/* =========================================================
+   11. 시작
    ========================================================= */
 if (!EXPORT) new ResizeObserver(() => resize()).observe($('screen'));
 resize();
 syncUI();
 requestAnimationFrame(loop);
+if (!EXPORT) {
+  new ResizeObserver(() => pgResize()).observe(pcv);
+  pgResize(); pgReset(); requestAnimationFrame(pgLoop);
+  qzRender();
+  if (document.fonts && document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', () => { PG.dirty = true; });
+}
 const fontsReady = Promise.all([
   [700, FD], [800, FD], [400, FB], [500, FB], [600, FB], [700, FB], [400, FM], [500, FM]
 ].map(([w, f]) => document.fonts.load(`${w} 20px ${f}`, ALLTEXT).catch(() => null))).then(() => document.fonts.ready).then(() => { WRAP.clear(); segCache.clear(); rowsCache.key = ''; dirty = true; });
